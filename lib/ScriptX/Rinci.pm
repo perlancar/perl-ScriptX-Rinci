@@ -4,9 +4,16 @@ use strict 'subs', 'vars';
 use parent 'ScriptX::Base';
 require ScriptX;
 
+sub meta {
+    +{
+        summary => 'Run Rinci function',
+    };
+}
+
 sub new {
     my ($class, %args) = (shift, @_);
     $args{func} or die "Please specify func";
+    $args{func} =~ /\A\w+(::\w+)+\z/ or die "Invalid syntax for func, please use PACKAGE::FUNCNAME";
     $class->SUPER::new(%args);
 }
 
@@ -57,4 +64,19 @@ sub on_run {
 }
 
 1;
-# ABSTRACT: CLI scripts
+# ABSTRACT:
+
+=head1 SYNOPSIS
+
+ use ScriptX 'Rinci' => {
+     func => 'PACKAGENAME::FUNCNAME',
+ };
+
+
+=head1 DESCRIPTION
+
+B<EARLY, EXPERIMENTAL RELEASE. MOST THINGS ARE NOT IMPLEMENTED YET.>
+
+The goal of this plugin (and other related plugins) is to replace
+L<Perinci::CmdLine> (this includes L<Perinci::CmdLine::Classic> and
+L<Perinci::CmdLine::Lite>) with a more modular and flexible framework.
