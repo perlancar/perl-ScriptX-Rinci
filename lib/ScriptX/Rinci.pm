@@ -1,7 +1,12 @@
 package ScriptX::Rinci;
 
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
+
 use strict 'subs', 'vars';
-use parent 'ScriptX::Base';
+use parent 'ScriptX_Base';
 require ScriptX;
 
 sub meta {
